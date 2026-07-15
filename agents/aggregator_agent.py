@@ -1,21 +1,20 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from agents.utils import invoke_with_retry
 from config.settings import settings
+import time
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    google_api_key=settings.GEMINI_API_KEY
-)
+# llm = ChatGoogleGenerativeAI(
+#     model="gemini-2.5-flash",
+#     google_api_key=settings.GEMINI_API_KEY
+# )
 
 def aggregator_agent(state):
 
-    prompt = f"""
-        Return ONLY JSON.
-        Schema:{{"summary":"","security":[],"performance":[],"quality":[]}}
-        Security Findings: {state["security_review"]}
-        Performance Findings:{state["performance_review"]}
-        Quality Findings:{state["quality_review"]}
-        Create a concise final review.
-    """
-    review = invoke_with_retry(llm,prompt)
-    return {"final_review":review }
+    return {
+        "final_review": {
+            "summary":"Multi-agent review completed.",
+            "security":state["security_review"].get("issues", [] ),
+            "performance":state["performance_review"].get("issues", []),
+            "quality":state["quality_review"].get("issues", [])
+        }
+    }    

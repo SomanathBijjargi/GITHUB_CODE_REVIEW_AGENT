@@ -43,30 +43,30 @@ function Dashboard() {
         value={stats.total_reviews}
       />
 
-      <StatCard
+      {/* <StatCard
         title="Bugs Found"
         value={stats.total_bugs_found}
-      />
+      /> */}
 
-      <StatCard
+      {/* <StatCard
         title="Security Issues"
         value={stats.total_security_issues}
-      />
+      /> */}
 
-      <StatCard
+      {/* <StatCard
         title="Average Security"
         value={stats.average_security}
-      />
+      /> */}
 
-      <StatCard
+      {/* <StatCard
         title="Average Quality"
         value={stats.average_quality}
-      />
+      /> */}
 
-      <StatCard
+      {/* <StatCard
         title="Average Performance"
         value={stats.average_performance}
-      />
+      /> */}
 
       <StatCard
         title="Top Repository"

@@ -32,5 +32,14 @@ class GitHubService:
         response = requests.get(url,headers=headers)
         response.raise_for_status()
         return response.json()
+    
+    def get_pr_commits(self,owner,repo,pr_number):
+        url = (
+            f"{self.BASE_URL}/repos/"
+            f"{owner}/{repo}/pulls/{pr_number}/commits"
+        )
+        response = requests.get(url,headers=self.headers)
+        response.raise_for_status()
+        return response.json()
 
 github_service = GitHubService()

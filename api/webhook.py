@@ -29,6 +29,16 @@ async def process_pr(owner: str, repo: str, pr_number: int):
         review = review_code_with_agents(diff)
         print("Generating review...")
 
+        commits = github_service.get_pr_commits(owner,repo,pr_number)
+        commit_details =[]
+        for commit in commits:
+            commit_details.append({
+                "commit_id" : commit["sha"][:7],
+                "message" : commit["commit"]["message"],
+                "author": commit["commit"]["author"]["name"]
+            })
+        print("Extracting Commits for the raised PR...")
+
         formatted = format_comment(review)
         save_review({"owner" : owner, 
                     "repo": repo,
@@ -36,6 +46,7 @@ async def process_pr(owner: str, repo: str, pr_number: int):
                     "pr_title":pr_details["title"], 
                     "pr_url":pr_details["html_url"],
                     "author":pr_details["user"]['login'],
+                    "commits":commit_details,
                     "source_branch":pr_details["head"]["ref"],
                     "target_branch":pr_details["base"]["ref"],
                     "review": review,
