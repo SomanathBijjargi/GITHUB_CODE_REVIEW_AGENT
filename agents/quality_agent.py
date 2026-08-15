@@ -10,7 +10,7 @@ llm = ChatGoogleGenerativeAI(
 
 
 def quality_agent(state):
-    time.sleep(15)
+    # time.sleep(15)
     diff = state["diff"]
 
     prompt = f"""

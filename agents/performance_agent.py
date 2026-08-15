@@ -8,7 +8,7 @@ llm = ChatGoogleGenerativeAI(
 )
 
 def performance_agent(state):
-    time.sleep(10)
+    # time.sleep(10)
     diff = state["diff"]
 
     prompt = f"""

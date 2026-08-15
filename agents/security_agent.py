@@ -10,7 +10,7 @@ llm = ChatGoogleGenerativeAI(
 
 
 def security_agent(state):
-    time.sleep(5)
+    ## time.sleep(5)
     diff = state["diff"]
 
     prompt = f"""
